@@ -11,7 +11,9 @@ export function Property(){
             <div className='text-contrastWhite h-full'>
             <div className='flex h-full flex-col gap-3 py-4'>
                 <h2 className='font-semibold text-3xl'>Lorem, ipsum dolor.</h2>
-                <p className='max-w-[900px] text-xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt minima reprehenderit nihil ipsam aut quod veniam cumque! Facilis velit beatae, et error, minima itaque voluptates tempora fugiat sunt a veniam vitae sed commodi cupiditate vero neque quis temporibus nemo aspernatur maiores. Illo atque obcaecati beatae error maxime quod ut tempore.</p>
+                <div>
+                    <p className='max-w-[900px] line-clamp-4 text-xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt minima reprehenderit nihil ipsam aut quod veniam cumque! Facilis velit beatae, et error, minima itaque voluptates tempora fugiat sunt a veniam vitae sed commodi cupiditate vero neque quis temporibus nemo aspernatur maiores. Illo atque obcaecati beatae error maxime quod ut tempore.</p>
+                </div>
                 <div className='flex gap-20 items-end h-full text-xl'>
                 <p>R$ 200.000,00</p>
                 <p>São Paulo - SP</p>
