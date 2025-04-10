@@ -7,7 +7,9 @@
 
 @theme {
   --color-bgBlack: #292929;
+  --color-bgAlmostBlack: #444444;
   --color-distaqueBlack: #808080;
+  --color-distaqueBlack30: #808080B3;
   --color-contrastWhite: #F2EFEB;
   --color-contrastWhite30: #F2EFEB4D;
 
