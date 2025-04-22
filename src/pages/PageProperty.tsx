@@ -12,7 +12,7 @@ export function PageProperty(){
                 <div className="flex">
 
                     <div className="flex-1 ">
-                        <img src={property} className="rounded-sm" alt="" />
+                        <img src={property} className="rounded-sm" alt="Nome da propriedade" />
                     </div>
                     <div className="flex-1 text-contrastWhite flex justify-center">
                         <div className="max-w-80">
@@ -24,7 +24,7 @@ export function PageProperty(){
                             <div>
                                 <div className="flex items-center justify-between  my-6">
                                     <p>Imóvel disponivel em:</p> 
-                                    <img className="h-10" src={itau} alt="" />
+                                    <img className="h-10" src={itau} alt="Banco" />
                                 </div>
                                 <hr />
                                 <div className="flex items-center justify-between my-6">
