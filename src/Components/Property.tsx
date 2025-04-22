@@ -12,7 +12,7 @@ export function Property(props: PropertyProps){
     return(
         <div className='w-full bg-distaqueBlack h-60 rounded-xl px-4 flex items-center gap-5 hover:brightness-75 cursor-pointer transition-all duration-200' onClick={()=>{navigate(`/Property/${props.id}`)
         window.scrollTo({top: 0})}}>
-            <img src={property} className='h-52 rounded-md' alt="" />
+            <img src={property} className='h-52 rounded-md' alt="Nome da propriedade" />
             <div className='h-44 w-[1px] bg-contrastWhite'></div>
             <div className='text-contrastWhite h-full'>
             <div className='flex h-full flex-col gap-3 py-4'>
@@ -29,7 +29,7 @@ export function Property(props: PropertyProps){
             </div>
             <div className='h-full py-5 flex-initial flex  justify-end  w-80'>
             <div className='flex flex-col justify-between items-center'>
-                <img src={itau} className="h-16 w-28 " alt="" />
+                <img src={itau} className="h-16 w-28 " alt="Nome do banco" />
                 <p className='text-contrastWhite text-5xl'><IoIosArrowDown/></p>
             </div>
             
