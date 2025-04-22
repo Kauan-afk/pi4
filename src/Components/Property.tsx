@@ -10,7 +10,8 @@ interface PropertyProps {
 export function Property(props: PropertyProps){
     const navigate = useNavigate()
     return(
-        <div className='w-full bg-distaqueBlack h-60 rounded-xl px-4 flex items-center gap-5 hover:brightness-75 cursor-pointer transition-all duration-200' onClick={()=>navigate(`/Property/${props.id}`)}>
+        <div className='w-full bg-distaqueBlack h-60 rounded-xl px-4 flex items-center gap-5 hover:brightness-75 cursor-pointer transition-all duration-200' onClick={()=>{navigate(`/Property/${props.id}`)
+        window.scrollTo({top: 0})}}>
             <img src={property} className='h-52 rounded-md' alt="" />
             <div className='h-44 w-[1px] bg-contrastWhite'></div>
             <div className='text-contrastWhite h-full'>
