@@ -2,10 +2,15 @@ import { IoIosArrowDown } from "react-icons/io";
 
 import property from '../assets/dillon-kydd-pvdx8c6Y5BY-unsplash.jpg'
 import itau from '../assets/Section-4_Image-with-text.avif'
+import { useNavigate } from "react-router-dom";
 
-export function Property(){
+interface PropertyProps {
+    id: string
+}
+export function Property(props: PropertyProps){
+    const navigate = useNavigate()
     return(
-        <div className='w-full bg-distaqueBlack h-60 rounded-xl px-4 flex items-center gap-5'>
+        <div className='w-full bg-distaqueBlack h-60 rounded-xl px-4 flex items-center gap-5 hover:brightness-75 cursor-pointer transition-all duration-200' onClick={()=>navigate(`/Property/${props.id}`)}>
             <img src={property} className='h-52 rounded-md' alt="" />
             <div className='h-44 w-[1px] bg-contrastWhite'></div>
             <div className='text-contrastWhite h-full'>
@@ -15,8 +20,8 @@ export function Property(){
                     <p className='max-w-[900px] line-clamp-4 text-xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt minima reprehenderit nihil ipsam aut quod veniam cumque! Facilis velit beatae, et error, minima itaque voluptates tempora fugiat sunt a veniam vitae sed commodi cupiditate vero neque quis temporibus nemo aspernatur maiores. Illo atque obcaecati beatae error maxime quod ut tempore.</p>
                 </div>
                 <div className='flex gap-20 items-end h-full text-xl'>
-                <p>R$ 200.000,00</p>
-                <p>São Paulo - SP</p>
+                    <p>R$ 200.000,00</p>
+                    <p>São Paulo - SP</p>
                 </div>
             </div>
             

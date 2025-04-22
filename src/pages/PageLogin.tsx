@@ -25,9 +25,9 @@ export function PageLogin(){
                                 <h3>Senha:</h3>
                                 <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' name="" id="" /> 
                             </div>
-                            <Link to={"/Home"} className='w-full'><button className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5'>Entrar</button></Link>
+                            <Link to={"/Home"} className='w-full'><button className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Entrar</button></Link>
                             <hr />
-                            <button className='border flex items-center h-10 rounded-sm px-3'><FcGoogle/> <p className='flex-1'>Entrar com o Google</p></button>
+                            <button className='border flex items-center h-10 rounded-sm px-3 '><FcGoogle/> <p className='flex-1'>Entrar com o Google</p></button>
                         </div>
                     </div>
                 </div>
