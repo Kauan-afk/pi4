@@ -7,6 +7,8 @@ import { PageLogin } from './pages/PageLogin';
 import { PageHome } from './pages/PageHome';
 import { PageListGroup } from './pages/PageListGroup';
 import { PageProperty } from './pages/PageProperty';
+import { PageSettings } from './pages/PageSettings';
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path='/ListProperties' element={<PageProperties/>}/>
         <Route path='/ListGroup' element={<PageListGroup/>}/>
         <Route path='/Property/*' element={<PageProperty/>}/>
+        <Route path='/PageSettings' element={<PageSettings/>}/>
       </Routes>
     </BrowserRouter>
    </main>
