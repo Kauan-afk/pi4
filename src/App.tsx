@@ -20,7 +20,7 @@ function App() {
         <Route path='/Home' element={<PageHome/>}/>
         <Route path='/ListProperties' element={<PageProperties/>}/>
         <Route path='/ListGroup' element={<PageListGroup/>}/>
-        <Route path='/Property/*' element={<PageProperty/>}/>
+        <Route path='/Property/:id' element={<PageProperty/>}/>
         <Route path='/PageSettings' element={<PageSettings/>}/>
       </Routes>
     </BrowserRouter>

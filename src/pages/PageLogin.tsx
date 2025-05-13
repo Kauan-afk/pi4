@@ -7,7 +7,7 @@ export function PageLogin(){
     return(
         <main className="h-screen w-screen bg-bgBlack flex">
             <div className="h-full hidden md:block">
-                <img src={houseImg} className='h-full' alt="" />
+                <img src={houseImg} className='h-full' alt="Imagem prédio login" />
             </div>
             <div className=" h-full flex flex-col justify-between items-center flex-1">
                 <div className='flex flex-col justify-center items-center flex-1'>

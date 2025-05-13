@@ -1,12 +1,16 @@
-import property from '../assets/dillon-kydd-pvdx8c6Y5BY-unsplash.jpg'
 
+interface groupProps {
+    name: string,
+    urlImg: string,
+    
+}
 
-export function Quadradinho (){
+export function Quadradinho (props: groupProps){
     return (
-        <div className='md:max-w-60 max-w-40  bg-distaqueBlack rounded-2xl'>
-            <img src={property} className='w-full rounded-md ' alt="Nome do grupo" />
-            <div className='p-3.5 pt-3.5'>
-                <h2 className='font-semibold text-3xl text-contrastWhite'>Lorem, ipsum.</h2>
+        <div className='md:max-w-60 max-w-44  bg-distaqueBlack rounded-2xl hover:brightness-75 cursor-pointer transition-all duration-200'>
+            <img src={props.urlImg} className='w-full rounded-md ' alt={props.name} />
+            <div className='p-3'>
+                <h2 className='font-semibold md:text-3xl text-xl text-contrastWhite'>{props.name}</h2>
             </div>
         </div>
     )
