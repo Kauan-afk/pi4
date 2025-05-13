@@ -29,8 +29,8 @@ export const useDataProperty = [
       },
       {
         id: "2",
-        name: "Apartamento no Centro",
-        description: "Apartamento de 2 quartos, 1 vaga de garagem, próximo ao metrô.",
+        name: "Casa de Camping",
+        description: "Casa de camping com 2 quartos, 1 vaga de garagem, próximo ao metrô.",
         value: "R$ 320.000",
         urlImg: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80",
         location: "Rio de Janeiro - RJ",
@@ -47,8 +47,8 @@ export const useDataProperty = [
       },
       {
         id: "4",
-        name: "Sítio para Fins de Semana",
-        description: "Pequeno sítio com pomar e área de lazer, ótimo para descanso.",
+        name: "Casa moderna com varanda",
+        description: "Casa moderna com varanda e área de lazer, ótimo para descanso.",
         value: "R$ 280.000",
         urlImg: "https://www.imovelaqui.com.br/fotopop/imovelaqui20160428105646622_184514563.jpg",
         location: "Bragança Paulista - SP",
