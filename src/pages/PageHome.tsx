@@ -5,10 +5,34 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { useDataProperty, useDatasGroups } from '@/hooks/useDatas';
+import { useBackendApi } from '@/hooks/useBackendApi';
+import { useEffect, useState } from 'react';
+
+interface bradescoProps{
+    banco: string
+    imageUrl: string
+    city: string
+    showDescription: string
+    price: string
+    id: number
+}
 
 export function PageHome(){
     const navigate = useNavigate()
 
+    const backendApi = useBackendApi()
+    const [auctionsBradesco, setAuctionsBradesco] = useState<bradescoProps[]>([])
+
+    useEffect(()=>{
+        async function getAuctionsBradesco(){
+            const data = await backendApi.getAuctionBradesco()
+            
+            if(data){
+                setAuctionsBradesco(data.auction)
+            }
+        }
+        getAuctionsBradesco()
+    }, [])
     
 
     return(
@@ -40,10 +64,10 @@ export function PageHome(){
                     <p className='cursor-pointer hover:underline' onClick={()=>navigate("/ListProperties")}>Ver todos</p>
                 </div>
                 <div className="flex flex-col gap-5">
-                {useDataProperty?
-                    useDataProperty.map(property=>{
+                {auctionsBradesco?
+                    auctionsBradesco.slice(0, 4).map(auction=>{
                         return(
-                            <Property key={property.id} id={property.id} name={property.name} description={property.description} area={property.area} urlImg={property.urlImg} location={property.location} value={property.value}/>
+                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.banco} urlImg={auction.imageUrl} location={auction.banco} value={auction.price} banco={auction.banco}/>
                         )
                     })
                     

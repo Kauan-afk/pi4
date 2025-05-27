@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useCountriesApi } from '@/hooks/useStatesBrazil';
 import { useDataProperty} from '@/hooks/useDatas';
+import { useBackendApi } from '@/hooks/useBackendApi';
 interface statesProps {
     nome: string
     sigla: string
@@ -21,6 +22,15 @@ interface statesProps {
 
 interface citiesProps {
     nome: string
+}
+
+interface bradescoProps{
+    banco: string
+    imageUrl: string
+    city: string
+    showDescription: string
+    price: string
+    id: number
 }
 
 export function PageProperties() {
@@ -33,6 +43,20 @@ export function PageProperties() {
     const [citySelected, setCitySelected] = useState("")
 
     const dataStates = useCountriesApi()
+
+    const backendApi = useBackendApi()
+    const [auctionsBradesco, setAuctionsBradesco] = useState<bradescoProps[]>([])
+
+    useEffect(()=>{
+        async function getAuctionsBradesco(){
+            const data = await backendApi.getAuctionBradesco()
+            
+            if(data){
+                setAuctionsBradesco(data.auction)
+            }
+        }
+        getAuctionsBradesco()
+    }, [])
 
     useEffect(()=>{
         async function getStates() {
@@ -229,13 +253,13 @@ export function PageProperties() {
                 }
                 </div>
                 <div className='flex flex-col gap-5'>
-                    {useDataProperty?
-                        useDataProperty.map(property=>{
-                            return(
-                                <Property key={property.id} id={property.id} name={property.name} description={property.description} area={property.area} urlImg={property.urlImg} location={property.location} value={property.value}/>
-                            )
-                        })
-                        
+                    {auctionsBradesco?
+                    auctionsBradesco.map(auction=>{
+                        return(
+                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.banco} urlImg={auction.imageUrl} location={auction.banco} value={auction.price} banco={auction.banco}/>
+                        )
+                    })
+                    
                     :null}
                 </div>
             </div>
