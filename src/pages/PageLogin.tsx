@@ -1,9 +1,31 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import houseImg from '../assets/ChatGPT Image 10 de abr. de 2025, 17_45_50.png'
-import { Link } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import { useBackendApi } from '@/hooks/useBackendApi';
+import { AuthContext } from '@/context/AuthContext';
 
 export function PageLogin(){
     const [page, setPage] = useState(0)
+    const auth = useContext(AuthContext)
+    const backendApi = useBackendApi()
+
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+
+
+    async function register(){
+        backendApi.register(username, email, password)
+    }
+
+    async function login() {
+        const data = await auth.signin(username, password);
+        if(data){
+            navigate("/Home")
+        }
+    }
+
     return(
         <main className="h-screen w-screen bg-bgBlack flex">
             <div className="h-full hidden md:block">
@@ -25,46 +47,41 @@ export function PageLogin(){
                         <div className='text-contrastWhite flex flex-col gap-5'>
                             <div>
                                 <h3>Email:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm px-3' name="" id="" />
+                                <input type="text" onChange={(e)=>setUsername(e.target.value)} className='bg-bgAlmostBlack w-full h-10 rounded-sm px-3' name="" id="" />
                             </div>
                             <div>
                                 <h3>Senha:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' name="" id="" /> 
+                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setPassword(e.target.value)} name="" id="" /> 
                             </div>
-                            <Link to={"/Home"} className='w-full'><button className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Entrar</button></Link>
+                            <button onClick={()=>login()} className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Entrar</button>
                             <hr />
                             <p className='flex justify-center'>Ainda não possui uma conta? <b className='underline cursor-pointer' onClick={()=>setPage(1)}> Cadastre-se</b></p>
                             
                             <p className='flex justify-center'>Precisa recuperar a senha? <b className='underline cursor-pointer' onClick={()=>setPage(1)}> Clique aqui</b></p>
 
                         </div>
-                        
-                        
                     </div>
                     :
-                    <div className=' pb-5 bg-distaqueBlack30 w-96 rounded-md p-5 flex-1'>
+                    <div className=' max-h-[500px] pb-5 bg-distaqueBlack30 w-96 rounded-md p-5 flex-1'>
                         <div className='text-contrastWhite flex flex-col gap-5'>
                             <div>
-                                <h3>Nome completo:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm px-3' name="" id="" />
+                                <h3>Nome de usuário:</h3>
+                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm px-3' onChange={(e)=>setUsername(e.target.value)} name="" id="" />
                             </div>
                             <div>
                                 <h3>Email:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' name="" id="" /> 
+                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setEmail(e.target.value)} name="" id="" /> 
                             </div>
                             <div>
                                 <h3>Senha:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' name="" id="" /> 
+                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setPassword(e.target.value)} name="" id="" /> 
                             </div>
                             <div>
                                 <h3>Confirmar senha:</h3>
                                 <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' name="" id="" /> 
                             </div>
-                            <div>
-                                <h3>Telefone:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' name="" id="" /> 
-                            </div>
-                            <Link to={"/Home"} className='w-full'><button className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Entrar</button></Link>
+                            
+                            <button onClick={()=>register()} className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Entrar</button>
                             <hr />
                             <p className='flex justify-center'>Já possui uma conta? <b className='underline cursor-pointer' onClick={()=>setPage(0)}> Entrar</b></p>
                         </div>

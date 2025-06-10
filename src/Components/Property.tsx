@@ -1,24 +1,42 @@
 import itau from '../assets/Section-4_Image-with-text.avif'
 import bradesco from '../assets/Bradesco-Symbol.png'
+import caixa from '../assets/Caixa.png'
+import santander from '../assets/BSBR-9870d28e.png'
+
+
 
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useBackendApi } from '@/hooks/useBackendApi';
 
 interface PropertyProps {
     id: number,
     name: string,
     description: string,
     value: string,
-    urlImg: string,
+    imageUrl: string,
     location: string,
     area: string,
     banco: string
 }
+
+interface bradescoProps{
+    banco: string
+    imageUrl: string
+    city: string
+    showDescription: string
+    price: string
+    id: number
+}
+
 export function Property(props: PropertyProps){
     const navigate = useNavigate()
+    
+    
     return(
         <div className='w-full md:flex-nowrap flex-wrap bg-distaqueBlack min-h-60 rounded-xl py-4 md:py-0 px-4 flex items-center md:gap-5 hover:brightness-75 cursor-pointer transition-all duration-200' onClick={()=>{navigate(`/Property/${props.id}`)
         window.scrollTo({top: 0})}}>
-            <img src={props.urlImg} className='h-52 max-w-60 md:w-auto w-full rounded-md' alt={props.name} />
+            <img src={props.imageUrl} className='h-52 max-w-60 md:w-auto w-full rounded-md' alt={props.name} />
             <div className='h-44 w-[1px] bg-contrastWhite hidden md:block'></div>
             <div className='flex md:h-full justify-between w-full'>
                 <div className='text-contrastWhite md:h-full'>
@@ -37,7 +55,7 @@ export function Property(props: PropertyProps){
                 </div>
                 <div className='md:h-full py-5 flex-initial md:flex  justify-end w-full md:w-80 hidden'>
                     <div className='flex flex-col justify-between items-center'>
-                        <img src={props.banco=="Bradesco"? bradesco : itau} className="h-16 w-28 " alt={`${props.banco}.png`} />
+                        <img src={props.banco=="Bradesco"? bradesco : props.banco=="Itau" ? itau : props.banco=="Caixa"? caixa : santander} className="h-16 w-28 " alt={`${props.banco}.png`} />
                     </div>
                 
                 </div>

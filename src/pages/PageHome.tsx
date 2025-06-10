@@ -4,9 +4,10 @@ import { Quadradinho } from '@/Components/Quadradinho';
 import { useNavigate } from 'react-router-dom';
 
 
-import { useDataProperty, useDatasGroups } from '@/hooks/useDatas';
+import {  useDatasGroups } from '@/hooks/useDatas';
 import { useBackendApi } from '@/hooks/useBackendApi';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '@/context/AuthContext';
 
 interface bradescoProps{
     banco: string
@@ -17,11 +18,17 @@ interface bradescoProps{
     id: number
 }
 
+interface foldersProps{
+    name: string
+}
+
 export function PageHome(){
     const navigate = useNavigate()
-
+    const auth = useContext(AuthContext)
     const backendApi = useBackendApi()
     const [auctionsBradesco, setAuctionsBradesco] = useState<bradescoProps[]>([])
+    const [folders, setFolders] = useState<foldersProps[]>([])
+
 
     useEffect(()=>{
         async function getAuctionsBradesco(){
@@ -32,32 +39,40 @@ export function PageHome(){
             }
         }
         getAuctionsBradesco()
+
+
+        async function listFolders(){
+            const data = await backendApi.listFolders()
+            
+            if(data){
+                console.log(data.folders)
+                setFolders(data.folders)
+            }
+        }
+        listFolders()
+        console.log(folders)
     }, [])
     
-
+    
     return(
 
         <div className="flex flex-col w-full pb-24 md:pb-0">
             <Navbar/>
 
             <div className='flex-1 border flex flex-col gap-5 border-contrastWhite30 border-b-0 border-r-0 rounded-tl-xl md:p-12 p-3'>
-
+                
                 <div className='flex justify-between items-center text-contrastWhite'>
                     <h1 className="font-semibold text-4xl ">Alguns grupos de imóveis</h1>
                     <p className='cursor-pointer hover:underline' onClick={()=>navigate("/ListGroup")}>Ver todos</p>
                 </div>
                 <div className='flex md:justify-between md:gap-5 gap-7 mb-10 flex-wrap'>
-                    {useDatasGroups?
-                    useDatasGroups.map(group=>{
+                    {folders?
+                    folders.map(group=>{
                         return(
-                            <Quadradinho key={group.name} name={group.name} urlImg={group.urlImg}/>
-
+                            <Quadradinho key={group.name} name={group.name}/>
                         )
-
                     })
-                    
                     :null}
-
                 </div>
                 <div className='flex justify-between items-center text-contrastWhite'>
                     <h1 className="font-semibold text-4xl text-contrastWhite">Alguns Imóveis</h1>

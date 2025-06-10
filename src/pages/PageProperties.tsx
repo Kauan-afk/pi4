@@ -6,6 +6,7 @@ import { PiSliders } from "react-icons/pi";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogHeader,
     DialogTitle,
@@ -41,6 +42,13 @@ export function PageProperties() {
 
     const [stateSelected, setStateSelected] = useState("")
     const [citySelected, setCitySelected] = useState("")
+
+
+    const [filterValue, setFilterValue] = useState(Number)
+    const [filterValueMax, setFilterValueMax] = useState(Number)
+    const [filterCity, setFilterCity] = useState("")
+    const [filterArea, setFilterArea] = useState("")
+
 
     const dataStates = useCountriesApi()
 
@@ -81,6 +89,13 @@ export function PageProperties() {
         
     }, [stateSelected])
 
+    async function filter(){
+        const data = await backendApi.filter(filterValue, filterValueMax, null, null, null)
+        if(data){
+            setAuctionsBradesco(data.auctions)
+        }
+    }
+
     return(
         <div className='flex flex-col w-full pb-24 md:pb-0'>
 
@@ -106,24 +121,15 @@ export function PageProperties() {
                                         <p className='font-semibold'>Valor:</p>
                                         <div className='flex gap-5'>
                                             <p>De:</p>
-                                            <input className='border border-contrastWhite30 w-30 rounded-sm px-1' type="text" />
+                                            <input className='border border-contrastWhite30 w-30 rounded-sm px-1' type="number" onChange={(e)=>setFilterValue(Number(e.target.value))}/>
                                             <p>Até:</p>
-                                            <input className='border border-contrastWhite30 w-30 rounded-sm px-1' type="text" />
+                                            <input className='border border-contrastWhite30 w-30 rounded-sm px-1' type="number" onChange={(e)=>setFilterValueMax(Number(e.target.value))}/>
+                                            
                                         </div>
                                     </div>
                                     <div>
                                         <p className='font-semibold'>Localização:</p>
                                         <div>
-                                            <p>Estado</p>
-                                            <select className='border border-contrastWhite30 min-w-20 rounded-sm' onChange={(e)=>{setStateSelected(e.target.value)}}>
-                                                {states.map(state => {
-                                                    return(
-                                                        <option key={state.sigla} className='text-bgBlack' value={state.sigla}>{state.nome}</option>
-                                                    )
-                                                })}
-                                                
-                                            </select>
-
                                             <p className='mt-2'>Cidade</p>
                                             <select className='border border-contrastWhite30 min-w-20 rounded-sm'>
                                                 {cities.map(city => {
@@ -161,7 +167,7 @@ export function PageProperties() {
                                         <p className='font-semibold'>Data:</p>
                                         <input className='border border-contrastWhite30 px-2 rounded-sm' type="date"/>
                                     </div>
-                                    <button className="text-bgBlack bg-contrastWhite w-full h-10 rounded-sm hover:brightness-75 transition-all duration-200 cursor-pointer">Filtrar</button>
+                                    <DialogClose className="text-bgBlack bg-contrastWhite w-full h-10 rounded-sm hover:brightness-75 transition-all duration-200 cursor-pointer" onClick={()=>filter()}>Filtrar</DialogClose>
                                 </div>
                             </DialogContent>
                         </Dialog>
@@ -197,15 +203,6 @@ export function PageProperties() {
                                 <div>
                                     <p className='font-semibold'>Localização:</p>
                                     <div>
-                                        <p>Estado</p>
-                                        <select className='border border-contrastWhite30 min-w-20 rounded-sm' onChange={(e)=>{setStateSelected(e.target.value)}}>
-                                            {states.map(state => {
-                                                return(
-                                                    <option key={state.sigla} className='text-bgBlack' value={state.sigla}>{state.nome}</option>
-                                                )
-                                            })}
-                                            
-                                        </select>
 
                                         <p className='mt-2'>Cidade</p>
                                         <select className='border border-contrastWhite30 min-w-20 rounded-sm'>
@@ -256,7 +253,7 @@ export function PageProperties() {
                     {auctionsBradesco?
                     auctionsBradesco.map(auction=>{
                         return(
-                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.banco} urlImg={auction.imageUrl} location={auction.banco} value={auction.price} banco={auction.banco}/>
+                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.banco} imageUrl={auction.imageUrl}  location={auction.banco} value={auction.price} banco={auction.banco}/>
                         )
                     })
                     

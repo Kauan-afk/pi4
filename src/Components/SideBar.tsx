@@ -5,7 +5,7 @@ import { TbLayoutList } from "react-icons/tb";
 import { FaGear } from "react-icons/fa6";
 import { MdExitToApp } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import {
     Dialog,
     DialogContent,
@@ -13,8 +13,10 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/Components/ui/dialog"
+import { AuthContext } from "@/context/AuthContext";
 
 export function SideBar(){
+    const auth = useContext(AuthContext)
     const local = useLocation()
 
     const [sideBarSize, setSizeBarSize] = useState("w-36")
@@ -31,7 +33,7 @@ export function SideBar(){
                 <div className='md:h-full h-20 flex md:justify-between md:flex-col justify-center text-contrastWhite w-full gap-6 md:gap-0'>
                     <div className={sideBarSize=="w-60"? 'flex md:flex-col gap-10' :' md:flex-col items-center gap-10  md:flex hidden'}>
                         <p onClick={()=>{sideBarSize=="w-36"? setSizeBarSize("w-60"): setSizeBarSize("w-36")}} className='text-3xl px-3 cursor-pointer hover:brightness-50 transition-all duration-150'><HiOutlineBars3BottomLeft/> </p>
-                        <p className='text-5xl flex items-center px-3 gap-3'><FaUserCircle/> {sideBarSize=="w-60"? <p className="text-xl">Kauan</p> :null}</p>
+                        <p className='text-5xl flex items-center px-3 gap-3'><FaUserCircle/> {sideBarSize=="w-60"? <p className="text-xl">{auth.user?.username}</p> :null}</p>
                     </div>
                     <div className={sideBarSize=="w-60"?`flex md:flex-col gap-6` :`flex md:flex-col items-center gap-6`}>
                         <div className={local.pathname=="/Home"?'text-3xl p-3 rounded-md bg-distaqueBlack flex items-center gap-3':'flex items-center gap-3 text-3xl p-3 rounded-md cursor-pointer hover:brightness-50 transition-all duration-150'} onClick={()=>navigate("/Home")}><AiFillHome/>{sideBarSize=="w-60"? <p className="text-xl">Inicio</p> :null}</div>
