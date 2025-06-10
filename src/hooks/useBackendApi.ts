@@ -10,7 +10,6 @@ export const useBackendApi = () => ({
 
   login: async(username: string, password: string) =>{
     const response = await axios.post("http://localhost:3333/login", {username, password});
-    console.log(response.data.username)
     return {
       username: response.data.username,
       token: response.data.token
@@ -41,7 +40,6 @@ export const useBackendApi = () => ({
         Authorization: `${storageData}`,
       },
     })
-    console.log(response.data)
     return {
       auction: response.data,
     };
@@ -53,7 +51,6 @@ export const useBackendApi = () => ({
         Authorization: `${storageData}`,
       },
     })
-    console.log(response.data)
     return {
       folders: response.data,
     };
@@ -65,7 +62,6 @@ export const useBackendApi = () => ({
         Authorization: `${storageData}`,
       },
     })
-    console.log(response.data.username)
     return {
       auctions: response.data,
     };
@@ -88,7 +84,6 @@ export const useBackendApi = () => ({
         Authorization: `${storageData}`,
       },
     })
-    console.log(response.data)
     return {
       auctions: response.data,
     };

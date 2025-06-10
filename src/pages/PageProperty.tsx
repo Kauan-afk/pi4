@@ -94,7 +94,7 @@ export function PageProperty(){
 
                     <div className="md:flex-1 ">
                         {auctionsBradesco?
-                            <img src={auctionsBradesco.imageUrl} className="rounded-sm" alt={auctionsBradesco.imageUrl} />
+                            <img src={auctionsBradesco.imageUrl} className="rounded-sm" alt={auctionsBradesco.city} />
 
                         : null}
                     </div>

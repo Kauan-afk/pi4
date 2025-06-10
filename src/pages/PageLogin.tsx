@@ -17,6 +17,7 @@ export function PageLogin(){
 
     async function register(){
         backendApi.register(username, email, password)
+        navigate("/Home")
     }
 
     async function login() {
@@ -51,37 +52,32 @@ export function PageLogin(){
                             </div>
                             <div>
                                 <h3>Senha:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setPassword(e.target.value)} name="" id="" /> 
+                                <input type="password" className='px-3 bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setPassword(e.target.value)} name="" id="" /> 
                             </div>
                             <button onClick={()=>login()} className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Entrar</button>
                             <hr />
                             <p className='flex justify-center'>Ainda não possui uma conta? <b className='underline cursor-pointer' onClick={()=>setPage(1)}> Cadastre-se</b></p>
                             
-                            <p className='flex justify-center'>Precisa recuperar a senha? <b className='underline cursor-pointer' onClick={()=>setPage(1)}> Clique aqui</b></p>
-
                         </div>
                     </div>
                     :
-                    <div className=' max-h-[500px] pb-5 bg-distaqueBlack30 w-96 rounded-md p-5 flex-1'>
+                    <div className=' max-h-[450px] pb-5 bg-distaqueBlack30 w-96 rounded-md p-5 flex-1'>
                         <div className='text-contrastWhite flex flex-col gap-5'>
                             <div>
                                 <h3>Nome de usuário:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm px-3' onChange={(e)=>setUsername(e.target.value)} name="" id="" />
+                                <input type="text" className='px-3 bg-bgAlmostBlack w-full h-10 rounded-sm px-3' onChange={(e)=>setUsername(e.target.value)} name="" id="" />
                             </div>
                             <div>
                                 <h3>Email:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setEmail(e.target.value)} name="" id="" /> 
+                                <input type="text" className='px-3 bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setEmail(e.target.value)} name="" id="" /> 
                             </div>
                             <div>
                                 <h3>Senha:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setPassword(e.target.value)} name="" id="" /> 
+                                <input type="password" className='px-3 bg-bgAlmostBlack w-full h-10 rounded-sm' onChange={(e)=>setPassword(e.target.value)} name="" id="" /> 
                             </div>
-                            <div>
-                                <h3>Confirmar senha:</h3>
-                                <input type="text" className='bg-bgAlmostBlack w-full h-10 rounded-sm' name="" id="" /> 
-                            </div>
+                           
                             
-                            <button onClick={()=>register()} className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Entrar</button>
+                            <button onClick={()=>register()} className='bg-contrastWhite w-full text-bgBlack h-10 rounded-sm mt-5 hover:brightness-75 transition-all duration-200 cursor-pointer'>Cadastrar</button>
                             <hr />
                             <p className='flex justify-center'>Já possui uma conta? <b className='underline cursor-pointer' onClick={()=>setPage(0)}> Entrar</b></p>
                         </div>

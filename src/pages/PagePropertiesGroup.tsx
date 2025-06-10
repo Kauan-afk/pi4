@@ -31,6 +31,7 @@ interface bradescoProps{
     showDescription: string
     price: string
     id: number
+    area: string
 }
 
 export function PagePropertiesGroup() {
@@ -67,7 +68,7 @@ export function PagePropertiesGroup() {
                 </div>
             </div>
             <div className='flex-1 border flex flex-col gap-5 border-contrastWhite30 border-b-0 border-r-0 rounded-tl-xl md:p-12 p-3'>
-                <h1 className='font-semibold text-4xl text-contrastWhite'>Imóveis</h1>
+                <h1 className='font-semibold text-4xl text-contrastWhite'>Imóveis em grupo</h1>
                 <div className='flex flex-col gap-5'>
                     <input type="text" className='bg-distaqueBlack rounded-sm h-12 w-full px-5 placeholder:text-bgBlack placeholder:text-xl focus:outline outline-contrastWhite  md:hidden' placeholder='Pesquisar imóvel'/>
                     
@@ -76,7 +77,7 @@ export function PagePropertiesGroup() {
                     {auctionsBradesco?
                     auctionsBradesco.map(auction=>{
                         return(
-                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.banco} imageUrl={auction.imageUrl} location={auction.banco} value={auction.price} banco={auction.banco}/>
+                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.area} imageUrl={auction.imageUrl} location={auction.banco} value={auction.price} banco={auction.banco}/>
                         )
                     })
                     

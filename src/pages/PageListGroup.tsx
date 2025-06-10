@@ -36,7 +36,7 @@ export function PageListGroup(){
             }
         }
         listFolders()
-    }, [])
+    }, [createFolder])
     return(
         <div className="flex flex-col md:w-full pb-24 md:pb-0">
             <Navbar/>

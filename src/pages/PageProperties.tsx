@@ -32,6 +32,7 @@ interface bradescoProps{
     showDescription: string
     price: string
     id: number
+    area: string
 }
 
 export function PageProperties() {
@@ -253,7 +254,7 @@ export function PageProperties() {
                     {auctionsBradesco?
                     auctionsBradesco.map(auction=>{
                         return(
-                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.banco} imageUrl={auction.imageUrl}  location={auction.banco} value={auction.price} banco={auction.banco}/>
+                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.area} imageUrl={auction.imageUrl}  location={auction.banco} value={auction.price} banco={auction.banco}/>
                         )
                     })
                     

@@ -16,10 +16,13 @@ interface bradescoProps{
     showDescription: string
     price: string
     id: number
+    area: string
+
 }
 
 interface foldersProps{
     name: string
+    id: string  
 }
 
 export function PageHome(){
@@ -69,7 +72,7 @@ export function PageHome(){
                     {folders?
                     folders.map(group=>{
                         return(
-                            <Quadradinho key={group.name} name={group.name}/>
+                            <Quadradinho key={group.name} id={group.id} name={group.name}/>
                         )
                     })
                     :null}
@@ -82,7 +85,7 @@ export function PageHome(){
                 {auctionsBradesco?
                     auctionsBradesco.slice(0, 4).map(auction=>{
                         return(
-                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.banco} urlImg={auction.imageUrl} location={auction.banco} value={auction.price} banco={auction.banco}/>
+                            <Property key={auction.id} id={auction.id} name={auction.city} description={auction.showDescription} area={auction.area} imageUrl={auction.imageUrl} location={auction.banco} value={auction.price} banco={auction.banco}/>
                         )
                     })
                     
